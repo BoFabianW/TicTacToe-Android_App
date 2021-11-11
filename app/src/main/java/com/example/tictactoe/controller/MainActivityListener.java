@@ -1,7 +1,6 @@
 package com.example.tictactoe.controller;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import com.example.tictactoe.R;
