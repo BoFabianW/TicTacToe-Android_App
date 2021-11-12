@@ -1,14 +1,15 @@
-package com.example.tictactoe.gui;
+package de.werner.tictactoe.gui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
-import com.example.tictactoe.R;
-import com.example.tictactoe.controller.MainActivityListener;
+import de.werner.tictactoe.R;
+import de.werner.tictactoe.controller.MainActivityListener;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -83,9 +84,6 @@ public class MainActivity extends AppCompatActivity {
 
         boolean win = false;
 
-        // Unentschieden ermitteln.
-        if (runde >= 9) txtSpieler.setText("Spiel beendet!");
-
         // Gewinner ermitteln.
         if (btn1.getText().toString().equals("O") && btn2.getText().toString().equals("O") && btn3.getText().toString().equals("O"))
             win = true;
@@ -137,6 +135,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        Log.d("xxxxxxxxxxxxxxxxxxxxxxx", String.valueOf(runde));
+        // Unentschieden ermitteln.
+        if (!win && runde >= 9) txtSpieler.setText("Spiel beendet!");
 
         return win;
     }

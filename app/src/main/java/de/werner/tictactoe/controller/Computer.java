@@ -1,8 +1,8 @@
-package com.example.tictactoe.controller;
+package de.werner.tictactoe.controller;
 
 import android.os.Handler;
 import android.os.Looper;
-import com.example.tictactoe.gui.MainActivity;
+import de.werner.tictactoe.gui.MainActivity;
 import java.util.Random;
 
 /**
@@ -47,13 +47,16 @@ public class Computer extends Thread implements Runnable {
                         handler.post(() -> {
 
                             mainActivity.buttons.get(finalI).setText("O");
-                            mainActivity.aktuellerSpieler = "X";
                             mainActivity.runde++;
-                            mainActivity.txtSpieler.setText(mainActivity.player());
-                            mainActivity.refresh();
 
                             if (!mainActivity.check(mainActivity.aktuellerSpieler)) {
+                                mainActivity.aktuellerSpieler = "X";
+                                mainActivity.refresh();
                                 mainActivity.aktivieren();
+
+                                if (mainActivity.runde < 9) {
+                                    mainActivity.txtSpieler.setText(mainActivity.player());
+                                }
                             } else {
                                 mainActivity.deaktivieren();
                             }

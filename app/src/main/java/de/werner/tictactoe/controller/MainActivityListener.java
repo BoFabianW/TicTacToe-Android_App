@@ -1,10 +1,10 @@
-package com.example.tictactoe.controller;
+package de.werner.tictactoe.controller;
 
 import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.Button;
-import com.example.tictactoe.R;
-import com.example.tictactoe.gui.MainActivity;
+import de.werner.tictactoe.R;
+import de.werner.tictactoe.gui.MainActivity;
 
 public class MainActivityListener implements View.OnClickListener {
 
@@ -106,10 +106,10 @@ public class MainActivityListener implements View.OnClickListener {
             String selectPlayer = mainActivity.player();
             if (selectPlayer.equals("Du bist am Zug!")) {
                 mainActivity.aktivieren();
+                mainActivity.txtSpieler.setText(selectPlayer);
             } else {
                 com.start();
             }
-            mainActivity.txtSpieler.setText(selectPlayer);
         }
     }
 
