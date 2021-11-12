@@ -99,22 +99,24 @@ public class MainActivityListener implements View.OnClickListener {
                 b.setText("");
             }
 
-            mainActivity.runde = 1;
+            mainActivity.runde = 0;
             mainActivity.handler = null;
             com.handler = null;
 
-            if (mainActivity.aktuellerSpieler.equals("X")) {
-                mainActivity.txtSpieler.setText("Du bist am Zug !");
+            String selectPlayer = mainActivity.player();
+            if (selectPlayer.equals("Du bist am Zug!")) {
                 mainActivity.aktivieren();
             } else {
-                mainActivity.txtSpieler.setText("Dein Handy ist am Zug !");
                 com.start();
             }
+            mainActivity.txtSpieler.setText(selectPlayer);
         }
     }
 
     void nextRound(Computer com) {
         mainActivity.deaktivieren();
-        if (!mainActivity.check(mainActivity.aktuellerSpieler)) com.start();
+        if (!mainActivity.check(mainActivity.aktuellerSpieler)) {
+            if (mainActivity.runde < 9) com.start();
+        }
     }
 }

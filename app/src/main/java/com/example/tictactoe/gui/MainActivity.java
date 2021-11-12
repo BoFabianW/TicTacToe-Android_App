@@ -5,7 +5,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import com.example.tictactoe.R;
@@ -69,28 +68,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void refresh() {
 
-        runOnUiThread(new Runnable() {
+        runOnUiThread(() -> {
 
-            @Override
-            public void run() {
-
-                // Schleife durchlaufen und Button neu rendern.
-                for (Button b : buttons) {
-                    b.refreshDrawableState();
-                }
-            }
-        });
-    }
-
-    public void refreshText() {
-
-        runOnUiThread(new Runnable() {
-
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void run() {
-
-               txtSpieler.setText("Du bist am Zug !");
+            // Schleife durchlaufen und Button neu rendern.
+            for (Button b : buttons) {
+                b.refreshDrawableState();
             }
         });
     }
@@ -100,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
 
         boolean win = false;
 
+        // Unentschieden ermitteln.
+        if (runde >= 9) txtSpieler.setText("Spiel beendet!");
+
+        // Gewinner ermitteln.
         if (btn1.getText().toString().equals("O") && btn2.getText().toString().equals("O") && btn3.getText().toString().equals("O"))
             win = true;
         if (btn4.getText().toString().equals("O") && btn5.getText().toString().equals("O") && btn6.getText().toString().equals("O"))
@@ -136,48 +122,44 @@ public class MainActivity extends AppCompatActivity {
 
         if (win) {
 
-             handler = new Handler(Looper.getMainLooper());
+            handler = new Handler(Looper.getMainLooper());
 
-            if (player.equals("O")) {
-
-                handler.post(new Runnable() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void run() {
-                        txtSpieler.setText("Du hast verloren!");
-                        aktuellerSpieler = "X";
-                    }
-                });
-            } else {
-
-                handler.post(new Runnable() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void run() {
-                        txtSpieler.setText("Du hast gewonnen!");
-                        punkte ++;
-                        txtPunkte.setText("Punktzahl : " + punkte);
-                        aktuellerSpieler = "O";
-                    }
-                });
-            }
+            handler.post(() -> {
+                if (player.equals("O")) {
+                    txtSpieler.setText("Du hast verloren!");
+                    aktuellerSpieler = "X";
+                } else {
+                    txtSpieler.setText("Du hast gewonnen!");
+                    punkte++;
+                    txtPunkte.setText("Punktzahl : " + punkte);
+                    aktuellerSpieler = "O";
+                }
+            });
         }
-
-        Log.d("xxxxxxxxxxxxxxxxxxxxxx", String.valueOf(runde));
-        if (!win && runde >= 9) txtSpieler.setText("Spiel beendet!");
 
         return win;
     }
 
+    // Alle Spiel-Buttons aktivieren
     public void aktivieren() {
         for (Button b : buttons) {
             b.setClickable(true);
         }
     }
 
+    // Alle Spiel-Buttons deaktivieren
     public void deaktivieren() {
         for (Button b : buttons) {
             b.setClickable(false);
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    public String player() {
+        if (aktuellerSpieler.equals("X")) {
+            return "Du bist am Zug!";
+        } else {
+            return "Dein Handy ist am Zug!";
         }
     }
 }
