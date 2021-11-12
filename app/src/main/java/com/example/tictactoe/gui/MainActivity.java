@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         btn8 = findViewById(R.id.btn8);
         btn9 = findViewById(R.id.btn9);
 
+        // Buttons der ArrayList hinzufügen.
         buttons.add(btn1);
         buttons.add(btn2);
         buttons.add(btn3);
