@@ -2,6 +2,7 @@ package de.werner.tictactoe.gui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -85,39 +86,71 @@ public class MainActivity extends AppCompatActivity {
         boolean win = false;
 
         // Gewinner ermitteln.
-        if (btn1.getText().toString().equals("O") && btn2.getText().toString().equals("O") && btn3.getText().toString().equals("O"))
+        if (btn1.getText().toString().equals("O") && btn2.getText().toString().equals("O") && btn3.getText().toString().equals("O")) {
             win = true;
-        if (btn4.getText().toString().equals("O") && btn5.getText().toString().equals("O") && btn6.getText().toString().equals("O"))
+            setWinButtons(1, 2, 3);
+        }
+        if (btn4.getText().toString().equals("O") && btn5.getText().toString().equals("O") && btn6.getText().toString().equals("O")) {
             win = true;
-        if (btn7.getText().toString().equals("O") && btn8.getText().toString().equals("O") && btn9.getText().toString().equals("O"))
+            setWinButtons(4, 5, 6);
+        }
+        if (btn7.getText().toString().equals("O") && btn8.getText().toString().equals("O") && btn9.getText().toString().equals("O")) {
             win = true;
-        if (btn1.getText().toString().equals("O") && btn4.getText().toString().equals("O") && btn7.getText().toString().equals("O"))
+            setWinButtons(7, 8, 9);
+        }
+        if (btn1.getText().toString().equals("O") && btn4.getText().toString().equals("O") && btn7.getText().toString().equals("O")) {
             win = true;
-        if (btn1.getText().toString().equals("O") && btn5.getText().toString().equals("O") && btn9.getText().toString().equals("O"))
+            setWinButtons(1, 4, 7);
+        }
+        if (btn1.getText().toString().equals("O") && btn5.getText().toString().equals("O") && btn9.getText().toString().equals("O")) {
             win = true;
-        if (btn2.getText().toString().equals("O") && btn5.getText().toString().equals("O") && btn8.getText().toString().equals("O"))
+            setWinButtons(1, 5, 9);
+        }
+        if (btn2.getText().toString().equals("O") && btn5.getText().toString().equals("O") && btn8.getText().toString().equals("O")) {
             win = true;
-        if (btn3.getText().toString().equals("O") && btn6.getText().toString().equals("O") && btn9.getText().toString().equals("O"))
+            setWinButtons(2, 5, 8);
+        }
+        if (btn3.getText().toString().equals("O") && btn6.getText().toString().equals("O") && btn9.getText().toString().equals("O")) {
             win = true;
-        if (btn3.getText().toString().equals("O") && btn5.getText().toString().equals("O") && btn7.getText().toString().equals("O"))
+            setWinButtons(3, 6, 9);
+        }
+        if (btn3.getText().toString().equals("O") && btn5.getText().toString().equals("O") && btn7.getText().toString().equals("O")) {
             win = true;
+            setWinButtons(3, 5, 7);
+        }
 
-        if (btn1.getText().toString().equals("X") && btn2.getText().toString().equals("X") && btn3.getText().toString().equals("X"))
+        if (btn1.getText().toString().equals("X") && btn2.getText().toString().equals("X") && btn3.getText().toString().equals("X")) {
             win = true;
-        if (btn4.getText().toString().equals("X") && btn5.getText().toString().equals("X") && btn6.getText().toString().equals("X"))
+            setWinButtons(1, 2, 3);
+        }
+        if (btn4.getText().toString().equals("X") && btn5.getText().toString().equals("X") && btn6.getText().toString().equals("X")) {
             win = true;
-        if (btn7.getText().toString().equals("X") && btn8.getText().toString().equals("X") && btn9.getText().toString().equals("X"))
+            setWinButtons(4, 5, 6);
+        }
+        if (btn7.getText().toString().equals("X") && btn8.getText().toString().equals("X") && btn9.getText().toString().equals("X")) {
             win = true;
-        if (btn1.getText().toString().equals("X") && btn4.getText().toString().equals("X") && btn7.getText().toString().equals("X"))
+            setWinButtons(7, 8, 9);
+        }
+        if (btn1.getText().toString().equals("X") && btn4.getText().toString().equals("X") && btn7.getText().toString().equals("X")) {
             win = true;
-        if (btn1.getText().toString().equals("X") && btn5.getText().toString().equals("X") && btn9.getText().toString().equals("X"))
+            setWinButtons(1, 4, 7);
+        }
+        if (btn1.getText().toString().equals("X") && btn5.getText().toString().equals("X") && btn9.getText().toString().equals("X")) {
             win = true;
-        if (btn2.getText().toString().equals("X") && btn5.getText().toString().equals("X") && btn8.getText().toString().equals("X"))
+            setWinButtons(1, 5, 9);
+        }
+        if (btn2.getText().toString().equals("X") && btn5.getText().toString().equals("X") && btn8.getText().toString().equals("X")) {
             win = true;
-        if (btn3.getText().toString().equals("X") && btn6.getText().toString().equals("X") && btn9.getText().toString().equals("X"))
+            setWinButtons(2, 5, 8);
+        }
+        if (btn3.getText().toString().equals("X") && btn6.getText().toString().equals("X") && btn9.getText().toString().equals("X")) {
             win = true;
-        if (btn3.getText().toString().equals("X") && btn5.getText().toString().equals("X") && btn7.getText().toString().equals("X"))
+            setWinButtons(3, 6, 9);
+        }
+        if (btn3.getText().toString().equals("X") && btn5.getText().toString().equals("X") && btn7.getText().toString().equals("X")) {
             win = true;
+            setWinButtons(3, 5, 7);
+        }
 
         if (win) {
 
@@ -154,6 +187,13 @@ public class MainActivity extends AppCompatActivity {
     public void deaktivieren() {
         for (Button b : buttons) {
             b.setClickable(false);
+        }
+    }
+
+    void setWinButtons(int b1, int b2, int b3) {
+
+        for (int i = 0; i < buttons.size(); i++) {
+            if (i == b1 -1 || i == b2 -1 || i == b3 -1) buttons.get(i).setBackgroundColor(Color.rgb(255, 235, 59));
         }
     }
 

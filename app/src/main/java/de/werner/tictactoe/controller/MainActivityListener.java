@@ -1,6 +1,7 @@
 package de.werner.tictactoe.controller;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
 import de.werner.tictactoe.R;
@@ -97,6 +98,7 @@ public class MainActivityListener implements View.OnClickListener {
 
             for (Button b : mainActivity.buttons) {
                 b.setText("");
+                b.setBackgroundColor(Color.rgb(103, 58, 183));
             }
 
             mainActivity.runde = 0;
