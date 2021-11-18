@@ -2,6 +2,7 @@ package de.werner.tictactoe.controller;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import de.werner.tictactoe.R;
@@ -10,6 +11,7 @@ import de.werner.tictactoe.gui.MainActivity;
 public class MainActivityListener implements View.OnClickListener {
 
     MainActivity mainActivity;
+    MainActivityListener mainActivityListener;
 
     public MainActivityListener(MainActivity mainActivity) {
 
@@ -104,6 +106,7 @@ public class MainActivityListener implements View.OnClickListener {
             mainActivity.runde = 0;
             mainActivity.handler = null;
             com.handler = null;
+            Computer.threadPause = 400;
 
             String selectPlayer = mainActivity.player();
             if (selectPlayer.equals("Du bist am Zug!")) {
@@ -117,6 +120,8 @@ public class MainActivityListener implements View.OnClickListener {
 
     void nextRound(Computer com) {
         mainActivity.deaktivieren();
+        Computer.threadPause -= 50;
+
         if (!mainActivity.check(mainActivity.aktuellerSpieler)) {
             if (mainActivity.runde < 9) com.start();
         }

@@ -169,7 +169,6 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        Log.d("xxxxxxxxxxxxxxxxxxxxxxx", String.valueOf(runde));
         // Unentschieden ermitteln.
         if (!win && runde >= 9) txtSpieler.setText("Spiel beendet!");
 
@@ -190,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Gewinnerbuttons einfärben.
     void setWinButtons(int b1, int b2, int b3) {
 
         for (int i = 0; i < buttons.size(); i++) {

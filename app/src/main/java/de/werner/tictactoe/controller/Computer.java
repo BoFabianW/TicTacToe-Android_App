@@ -14,6 +14,8 @@ public class Computer extends Thread implements Runnable {
     MainActivity mainActivity;
     Handler handler;
 
+    public static int threadPause = 400;
+
     // Konstruktor
     public Computer(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -32,7 +34,7 @@ public class Computer extends Thread implements Runnable {
         int feld = random.nextInt(9);
 
         try {
-            Thread.sleep(300);
+            Thread.sleep(threadPause);
         } catch (InterruptedException ignored) {}
 
         for (int i = 0; i <= mainActivity.buttons.size(); i++) {
